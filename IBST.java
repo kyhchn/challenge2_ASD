@@ -1,4 +1,4 @@
-public interface IBST<T> {
+public interface IBST<T extends Comparable<T>> {
   public void add(Node<T> node);
   public int degree(Node<T> node);
   public int count();
