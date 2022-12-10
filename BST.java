@@ -45,23 +45,34 @@ public class BST<T extends Comparable<T>> implements IBST<T> {
   // dan letakkan node dalam BST
   // sesuai nilai atribut int objek T
   @Override
-  public void add(Node<T> node) {
+  public void add(Node<T> newNode) {
     Node<T> pointerNode = root;
+    Node<T> parentPNode = null;
     boolean isUnique = true;
-    while (pointerNode != null) {
-      if (pointerNode.key != node.key) {
-        if (node.key < pointerNode.key) {
-          pointerNode = pointerNode.lt;
+    if (pointerNode == null) {
+      root = newNode;
+    } else {
+      while (pointerNode != null) {
+        parentPNode = pointerNode;
+        if (pointerNode.key != newNode.key) {
+          if (newNode.key < pointerNode.key) {
+            pointerNode = pointerNode.lt;
+          } else {
+            pointerNode = pointerNode.rt;
+          }
         } else {
-          pointerNode = pointerNode.rt;
+          isUnique = false;
+          break;
         }
-      } else {
-        isUnique = false;
-        break;
+      }
+      if (isUnique) {
+        if (parentPNode.key > newNode.key) {
+          parentPNode.lt = newNode;
+        } else {
+          parentPNode.rt = newNode;
+        }
       }
     }
-    if (isUnique)
-      pointerNode = node;
 
   }
 
