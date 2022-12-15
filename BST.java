@@ -117,16 +117,20 @@ public class BST<T extends Comparable<T>> implements IBST<T> {
   // get parent node dari suatu node
   @Override
   public Node<T> parent(Node<T> node) {
+    if (node == null) {
+      return null;
+    }
     Node<T> temp = root;
+    Node<T> parent = null;
     while (temp != null) {
-      if (temp.lt.key == node.key || temp.rt.key == node.key) {
-        return temp;
+      if (node.key < temp.key) {
+        parent = temp;
+        temp = temp.lt;
+      } else if (node.key > temp.key) {
+        parent = temp;
+        temp = temp.rt;
       } else {
-        if (node.key > temp.key) {
-          temp = temp.rt;
-        } else {
-          temp = temp.lt;
-        }
+        return parent;
       }
     }
     return null;
@@ -169,9 +173,10 @@ public class BST<T extends Comparable<T>> implements IBST<T> {
   // traverse BST, simpan ke dalam array
   // return array
   @Override
-  public T[] toArray() {
+  public Object[] toArray() {
     List<T> list = new LinkedList<>();
-    T[] array = (T[]) new Object[list.size()];
+    inorderTravers(list, root);
+    Object[] array = new Object[list.size()];
     for (int i = 0; i < list.size(); i++) {
       array[i] = list.get(i);
     }
@@ -182,31 +187,37 @@ public class BST<T extends Comparable<T>> implements IBST<T> {
   // urutkan berdasarkan atribut int objek T
   // teknik sorting bebas
   @Override
-  public T[] sort(T[] tArray) {
-    int n = tArray.length;
-    for (int i = 0; i < n - 1; i++)
-      for (int j = 0; j < n - i - 1; j++)
-        if (tArray[j].compareTo(tArray[j + 1]) == 1) {
-          T temp = tArray[j];
-          tArray[j] = tArray[j + 1];
-          tArray[j + 1] = temp;
-        }
+  public Object[] sort(Object[] tArray) {
+    for (int i = 1; i < tArray.length; i++) {
+      T data = (T) tArray[i];
+      int j = i - 1;
+      while (j >= 0 && ((T) tArray[j]).compareTo(data) == 1) {
+        T temp = (T) tArray[j];
+        tArray[j] = tArray[j + 1];
+        tArray[j + 1] = temp;
+        j--;
+      }
+    }
     return tArray;
   }
 
   // print array yang dihasilkan dari toArray()
   @Override
-  public void print(T[] tArray) {
+  public void print(Object[] tArray) {
+    System.out.print("[");
     for (int i = 0; i < tArray.length; i++) {
-      System.out.println(tArray[i].toString());
+      System.out.print(tArray[i].toString());
+      if (i != tArray.length - 1)
+        System.out.print(" ");
     }
+    System.out.print("]\n");
   }
 
   void inorderTravers(List<T> aList, Node<T> node) {
     if (node != null) {
       inorderTravers(aList, node.lt);
-      aList.add(node.data);
       inorderTravers(aList, node.rt);
+      aList.add(node.data);
     }
   }
 }

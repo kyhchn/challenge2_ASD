@@ -7,7 +7,7 @@ public interface IBST<T extends Comparable<T>> {
   public Node<T> getMax(Node<T> node);
   public Node<T> parent(Node<T> node);
   public Node<T> delete(int key);
-  public T[] toArray();
-  public T[] sort(T[] tArray);
-  public void print(T[] tArray);
+  public Object[] toArray();
+  public Object[] sort(Object[] tArray);
+  public void print(Object[] tArray);
 }
