@@ -37,7 +37,7 @@ public class BST<T extends Comparable<T>> implements IBST<T> {
   @Override
   public int count() {
     List<T> nodes = new LinkedList<>();
-    inorderTravers(nodes, root);
+    postOrderTravers(nodes, root);
     return nodes.size();
   }
 
@@ -175,7 +175,7 @@ public class BST<T extends Comparable<T>> implements IBST<T> {
   @Override
   public Object[] toArray() {
     List<T> list = new LinkedList<>();
-    inorderTravers(list, root);
+    postOrderTravers(list, root);
     Object[] array = new Object[list.size()];
     for (int i = 0; i < list.size(); i++) {
       array[i] = list.get(i);
@@ -213,10 +213,10 @@ public class BST<T extends Comparable<T>> implements IBST<T> {
     System.out.print("]\n");
   }
 
-  void inorderTravers(List<T> aList, Node<T> node) {
+  void postOrderTravers(List<T> aList, Node<T> node) {
     if (node != null) {
-      inorderTravers(aList, node.lt);
-      inorderTravers(aList, node.rt);
+      postOrderTravers(aList, node.lt);
+      postOrderTravers(aList, node.rt);
       aList.add(node.data);
     }
   }

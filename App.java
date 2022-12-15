@@ -10,8 +10,8 @@ public class App {
     tree.add(new Node<Mobil>(avanza.tahun, avanza));
     tree.add(new Node<Mobil>(kijang.tahun, kijang));
 
-    System.out.println(tree.toString());
-    System.out.println("Divider");
+    System.out.println("Inorder traverse "+tree.toString());
+    System.out.print("PostOrder traverse: ");
     tree.print(tree.toArray());
     System.out.println("setelah sorting");
     Object[] objects = tree.toArray();
