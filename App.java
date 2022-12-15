@@ -41,6 +41,5 @@ public class App {
     tree.delete(2017);
     // tree.delete(2010);
     tree.print(tree.sort(tree.toArray()));
-
   }
 }
