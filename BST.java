@@ -161,8 +161,8 @@ public class BST<T extends Comparable<T>> implements IBST<T> {
         break;
       case 2:
         Node<T> leftMax = getMax(targetNode.lt);
-        targetNode.data = leftMax.data;
         delete(leftMax.key);
+        targetNode.data = leftMax.data;
         targetNode.key = leftMax.key;
         break;
 
@@ -208,7 +208,7 @@ public class BST<T extends Comparable<T>> implements IBST<T> {
     for (int i = 0; i < tArray.length; i++) {
       System.out.print(tArray[i].toString());
       if (i != tArray.length - 1)
-        System.out.print(" ");
+        System.out.print(", ");
     }
     System.out.print("]\n");
   }

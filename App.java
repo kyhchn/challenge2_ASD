@@ -33,12 +33,12 @@ public class App {
     System.out.print("kondisi awal ");
     tree.print(tree.sort(tree.toArray()));
     Node<Mobil> deleteNode = null;
-    // deleteNode = tree.get(1998, tree.root);
-    deleteNode = tree.get(2017, tree.root);
+    deleteNode = tree.get(1998, tree.root);
+    // deleteNode = tree.get(2017, tree.root);
     // deleteNode = tree.get(2010, tree.root);
     System.out.println("Delete tree " + deleteNode + " degree = " + tree.degree(deleteNode));
-    // tree.delete(1998);
-    tree.delete(2017);
+    tree.delete(1998);
+    // tree.delete(2017);
     // tree.delete(2010);
     tree.print(tree.sort(tree.toArray()));
   }
