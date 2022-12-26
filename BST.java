@@ -191,7 +191,7 @@ public class BST<T extends Comparable<T>> implements IBST<T> {
     for (int i = 1; i < tArray.length; i++) {
       T data = (T) tArray[i];
       int j = i - 1;
-      while (j >= 0 && ((T) tArray[j]).compareTo(data) == 1) {
+      while (j >= 0 && ((T) tArray[j]).compareTo(data) == -1) {
         T temp = (T) tArray[j];
         tArray[j] = tArray[j + 1];
         tArray[j + 1] = temp;

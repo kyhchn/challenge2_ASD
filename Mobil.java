@@ -16,7 +16,7 @@ public class Mobil implements Comparable<Mobil>{
   public int compareTo(Mobil o) {
     if (this.tahun > o.tahun) {
       return 1;
-    } else if (this.tahun > o.tahun) {
+    } else if (this.tahun < o.tahun) {
       return -1;
     }
     return 0;
